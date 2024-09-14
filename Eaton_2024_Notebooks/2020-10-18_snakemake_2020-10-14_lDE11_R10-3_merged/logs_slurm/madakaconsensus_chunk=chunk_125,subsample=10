@@ -1,0 +1,1595 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	madakaconsensus
+	1
+
+[Sat Jan  6 19:14:45 2024]
+rule madakaconsensus:
+    input: /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125, /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125
+    output: /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125, /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/alignment/subsample=10/chunk_125
+    jobid: 0
+    wildcards: subsample=10, chunk=chunk_125
+    resources: partition=short, time_min=20, mem_mb=500, cpus=1, optflags=
+
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:14:49 - MdlStrTF] Successfully removed temporary files from /tmp/tmp1kypcvox.
+[19:14:50 - MdlStrTF] Successfully removed temporary files from /tmp/tmp5cb_pxw_.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3125.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3125.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.33] collected minimizers
+[M::mm_idx_gen::0.004*1.12] sorted minimizers
+[M::main::0.006*0.93] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.93] distinct minimizers: 323 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.248; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3125.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3125.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.50] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.004*1.29] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.004*1.29] distinct minimizers: 323 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.248; total length: 1695
+[M::worker_pipeline::0.011*1.06] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3125.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3125.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:14:54 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:14:54 - Predict] Processing region(s): group_3125:0-1695
+[19:14:54 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:14:54 - BAMFile] Creating pool of 16 BAM file sets.
+[19:14:54 - Predict] Processing 1 short region(s).
+[19:14:55 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7febf07ca020>
+[19:14:55 - MdlStrTF] loading weights from /tmp/tmpgjiryzbo/model/variables/variables (using expect partial)
+[19:14:55 - Sampler] Initializing sampler for consensus of region group_3125:0-1695.
+[19:14:55 - Feature] Processed group_3125:0.0-1694.0 (median depth 10.0)
+[19:14:55 - Sampler] Took 0.00s to make features.
+[19:14:55 - PWorker] Running inference for 0.0M draft bases.
+[19:15:15 - PWorker] Batches in cache: 1.
+[19:15:15 - PWorker] 47.6% Done (0.0/0.0 Mbases) in 20.5s
+[19:15:15 - PWorker] Processed 1 batches
+[19:15:15 - PWorker] All done, 0 remainder regions.
+[19:15:15 - Predict] Finished processing all regions.
+[19:15:15 - MdlStrTF] Successfully removed temporary files from /tmp/tmpgjiryzbo.
+[19:15:17 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:15:17 - Stitcher] Stitching group_3125:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3125/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.61] collected minimizers
+[M::mm_idx_gen::0.003*1.85] sorted minimizers
+[M::main::0.003*1.84] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.82] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.80] distinct minimizers: 323 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.248; total length: 1695
+[M::worker_pipeline::0.004*1.46] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3125.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3125/consensus.fasta
+[M::main] Real time: 0.005 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:15:20 - MdlStrTF] Successfully removed temporary files from /tmp/tmp61hrkqko.
+[19:15:21 - MdlStrTF] Successfully removed temporary files from /tmp/tmp9rpmnvb7.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3126.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3126.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.33] collected minimizers
+[M::mm_idx_gen::0.004*1.10] sorted minimizers
+[M::main::0.006*0.92] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.92] distinct minimizers: 313 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.415; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3126.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3126.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.90] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.56] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.54] distinct minimizers: 313 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.415; total length: 1695
+[M::worker_pipeline::0.011*1.10] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3126.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3126.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.013 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:15:25 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:15:25 - Predict] Processing region(s): group_3126:0-1695
+[19:15:25 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:15:25 - BAMFile] Creating pool of 16 BAM file sets.
+[19:15:25 - Predict] Processing 1 short region(s).
+[19:15:26 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f8bc25fdf00>
+[19:15:26 - MdlStrTF] loading weights from /tmp/tmptp29niql/model/variables/variables (using expect partial)
+[19:15:26 - Sampler] Initializing sampler for consensus of region group_3126:0-1695.
+[19:15:26 - Feature] Processed group_3126:0.0-1694.0 (median depth 10.0)
+[19:15:26 - Sampler] Took 0.00s to make features.
+[19:15:26 - PWorker] Running inference for 0.0M draft bases.
+[19:15:47 - PWorker] Batches in cache: 1.
+[19:15:47 - PWorker] 50.5% Done (0.0/0.0 Mbases) in 20.5s
+[19:15:47 - PWorker] Processed 1 batches
+[19:15:47 - PWorker] All done, 0 remainder regions.
+[19:15:47 - Predict] Finished processing all regions.
+[19:15:47 - MdlStrTF] Successfully removed temporary files from /tmp/tmptp29niql.
+[19:15:48 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:15:48 - Stitcher] Stitching group_3126:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3126/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.40] collected minimizers
+[M::mm_idx_gen::0.003*1.71] sorted minimizers
+[M::main::0.003*1.71] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.69] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.67] distinct minimizers: 313 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.415; total length: 1695
+[M::worker_pipeline::0.004*1.36] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3126.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3126/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:15:51 - MdlStrTF] Successfully removed temporary files from /tmp/tmp2ae0bmd2.
+[19:15:52 - MdlStrTF] Successfully removed temporary files from /tmp/tmpzbg0fu4z.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3127.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3127.fasta.map-ont.mmi
+[M::mm_idx_gen::0.004*1.06] collected minimizers
+[M::mm_idx_gen::0.005*0.95] sorted minimizers
+[M::main::0.007*0.84] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.007*0.84] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3127.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3127.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.85] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.54] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.53] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::worker_pipeline::0.011*1.11] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3127.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3127.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.013 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:15:57 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:15:57 - Predict] Processing region(s): group_3127:0-1695
+[19:15:57 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:15:57 - BAMFile] Creating pool of 16 BAM file sets.
+[19:15:57 - Predict] Processing 1 short region(s).
+[19:15:58 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f94c7f89a50>
+[19:15:58 - MdlStrTF] loading weights from /tmp/tmp1vxg2nvr/model/variables/variables (using expect partial)
+[19:15:58 - Sampler] Initializing sampler for consensus of region group_3127:0-1695.
+[19:15:58 - Feature] Processed group_3127:0.0-1694.0 (median depth 10.0)
+[19:15:58 - Sampler] Took 0.00s to make features.
+[19:15:58 - PWorker] Running inference for 0.0M draft bases.
+[19:16:19 - PWorker] Batches in cache: 1.
+[19:16:19 - PWorker] 48.4% Done (0.0/0.0 Mbases) in 20.5s
+[19:16:19 - PWorker] Processed 1 batches
+[19:16:19 - PWorker] All done, 0 remainder regions.
+[19:16:19 - Predict] Finished processing all regions.
+[19:16:19 - MdlStrTF] Successfully removed temporary files from /tmp/tmp1vxg2nvr.
+[19:16:20 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:16:20 - Stitcher] Stitching group_3127:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3127/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.65] collected minimizers
+[M::mm_idx_gen::0.003*1.79] sorted minimizers
+[M::main::0.003*1.78] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.76] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.74] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::worker_pipeline::0.004*1.43] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3127.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3127/consensus.fasta
+[M::main] Real time: 0.005 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:16:24 - MdlStrTF] Successfully removed temporary files from /tmp/tmpfh1vr5p5.
+[19:16:24 - MdlStrTF] Successfully removed temporary files from /tmp/tmpix2igw1m.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3128.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3128.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.29] collected minimizers
+[M::mm_idx_gen::0.004*1.09] sorted minimizers
+[M::main::0.006*0.91] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.92] distinct minimizers: 322 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.264; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3128.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3128.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.82] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.46] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.45] distinct minimizers: 322 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.264; total length: 1695
+[M::worker_pipeline::0.010*1.10] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3128.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3128.fastq
+[M::main] Real time: 0.011 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:16:29 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:16:29 - Predict] Processing region(s): group_3128:0-1695
+[19:16:29 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:16:29 - BAMFile] Creating pool of 16 BAM file sets.
+[19:16:29 - Predict] Processing 1 short region(s).
+[19:16:30 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f2f33931e10>
+[19:16:30 - MdlStrTF] loading weights from /tmp/tmp44aw7tp5/model/variables/variables (using expect partial)
+[19:16:30 - Sampler] Initializing sampler for consensus of region group_3128:0-1695.
+[19:16:30 - Feature] Processed group_3128:0.0-1694.0 (median depth 10.0)
+[19:16:30 - Sampler] Took 0.00s to make features.
+[19:16:30 - PWorker] Running inference for 0.0M draft bases.
+[19:16:50 - PWorker] Batches in cache: 1.
+[19:16:50 - PWorker] 49.9% Done (0.0/0.0 Mbases) in 20.5s
+[19:16:50 - PWorker] Processed 1 batches
+[19:16:50 - PWorker] All done, 0 remainder regions.
+[19:16:50 - Predict] Finished processing all regions.
+[19:16:50 - MdlStrTF] Successfully removed temporary files from /tmp/tmp44aw7tp5.
+[19:16:52 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:16:52 - Stitcher] Stitching group_3128:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3128/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.54] collected minimizers
+[M::mm_idx_gen::0.003*1.75] sorted minimizers
+[M::main::0.003*1.74] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.72] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.70] distinct minimizers: 322 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.264; total length: 1695
+[M::worker_pipeline::0.005*1.33] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3128.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3128/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:16:56 - MdlStrTF] Successfully removed temporary files from /tmp/tmpj_5i9z7f.
+[19:16:56 - MdlStrTF] Successfully removed temporary files from /tmp/tmp2y9l1nb5.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3129.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3129.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.31] collected minimizers
+[M::mm_idx_gen::0.004*1.09] sorted minimizers
+[M::main::0.006*0.93] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.93] distinct minimizers: 315 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.381; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3129.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3129.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.33] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.004*1.16] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.004*1.16] distinct minimizers: 315 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.381; total length: 1695
+[M::worker_pipeline::0.014*1.01] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3129.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3129.fastq
+[M::main] Real time: 0.015 sec; CPU: 0.015 sec; Peak RSS: 0.004 GB
+Running medaka consensus
+[19:17:01 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:17:01 - Predict] Processing region(s): group_3129:0-1695
+[19:17:01 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:17:02 - BAMFile] Creating pool of 16 BAM file sets.
+[19:17:02 - Predict] Processing 1 short region(s).
+[19:17:02 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f6f92441a20>
+[19:17:02 - MdlStrTF] loading weights from /tmp/tmp81oa0iez/model/variables/variables (using expect partial)
+[19:17:03 - Sampler] Initializing sampler for consensus of region group_3129:0-1695.
+[19:17:03 - Feature] Processed group_3129:0.0-1694.0 (median depth 9.0)
+[19:17:03 - Sampler] Took 0.00s to make features.
+[19:17:03 - PWorker] Running inference for 0.0M draft bases.
+[19:17:23 - PWorker] Batches in cache: 1.
+[19:17:23 - PWorker] 50.4% Done (0.0/0.0 Mbases) in 20.5s
+[19:17:23 - PWorker] Processed 1 batches
+[19:17:23 - PWorker] All done, 0 remainder regions.
+[19:17:23 - Predict] Finished processing all regions.
+[19:17:23 - MdlStrTF] Successfully removed temporary files from /tmp/tmp81oa0iez.
+[19:17:24 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:17:24 - Stitcher] Stitching group_3129:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3129/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.63] collected minimizers
+[M::mm_idx_gen::0.003*1.80] sorted minimizers
+[M::main::0.003*1.79] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.77] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.75] distinct minimizers: 315 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.381; total length: 1695
+[M::worker_pipeline::0.004*1.43] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3129.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3129/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:17:28 - MdlStrTF] Successfully removed temporary files from /tmp/tmpqfam_umu.
+[19:17:29 - MdlStrTF] Successfully removed temporary files from /tmp/tmpzdup2ff4.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3130.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3130.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.37] collected minimizers
+[M::mm_idx_gen::0.004*1.17] sorted minimizers
+[M::main::0.006*0.97] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.97] distinct minimizers: 313 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.415; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3130.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3130.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.83] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.57] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.55] distinct minimizers: 313 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.415; total length: 1695
+[M::worker_pipeline::0.010*1.13] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3130.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3130.fastq
+[M::main] Real time: 0.011 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:17:33 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:17:33 - Predict] Processing region(s): group_3130:0-1695
+[19:17:33 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:17:33 - BAMFile] Creating pool of 16 BAM file sets.
+[19:17:33 - Predict] Processing 1 short region(s).
+[19:17:34 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7feef3b21930>
+[19:17:34 - MdlStrTF] loading weights from /tmp/tmp3331ytrr/model/variables/variables (using expect partial)
+[19:17:34 - Sampler] Initializing sampler for consensus of region group_3130:0-1695.
+[19:17:34 - Feature] Processed group_3130:0.0-1694.0 (median depth 10.0)
+[19:17:34 - Sampler] Took 0.00s to make features.
+[19:17:34 - PWorker] Running inference for 0.0M draft bases.
+[19:17:55 - PWorker] Batches in cache: 1.
+[19:17:55 - PWorker] 49.9% Done (0.0/0.0 Mbases) in 20.5s
+[19:17:55 - PWorker] Processed 1 batches
+[19:17:55 - PWorker] All done, 0 remainder regions.
+[19:17:55 - Predict] Finished processing all regions.
+[19:17:55 - MdlStrTF] Successfully removed temporary files from /tmp/tmp3331ytrr.
+[19:17:56 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:17:56 - Stitcher] Stitching group_3130:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3130/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.66] collected minimizers
+[M::mm_idx_gen::0.003*1.76] sorted minimizers
+[M::main::0.003*1.75] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.73] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.71] distinct minimizers: 313 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.415; total length: 1695
+[M::worker_pipeline::0.005*1.36] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3130.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3130/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:18:00 - MdlStrTF] Successfully removed temporary files from /tmp/tmpikc5ufht.
+[19:18:00 - MdlStrTF] Successfully removed temporary files from /tmp/tmp4j51bd3i.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3131.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3131.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.40] collected minimizers
+[M::mm_idx_gen::0.004*1.18] sorted minimizers
+[M::main::0.006*0.98] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.98] distinct minimizers: 314 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.398; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3131.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3131.fasta
+[M::main] Real time: 0.008 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.88] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.59] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.57] distinct minimizers: 314 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.398; total length: 1695
+[M::worker_pipeline::0.010*1.13] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3131.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3131.fastq
+[M::main] Real time: 0.011 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:18:05 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:18:05 - Predict] Processing region(s): group_3131:0-1695
+[19:18:05 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:18:05 - BAMFile] Creating pool of 16 BAM file sets.
+[19:18:05 - Predict] Processing 1 short region(s).
+[19:18:06 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f11bd605e10>
+[19:18:06 - MdlStrTF] loading weights from /tmp/tmp9heoplpc/model/variables/variables (using expect partial)
+[19:18:06 - Sampler] Initializing sampler for consensus of region group_3131:0-1695.
+[19:18:06 - Feature] Processed group_3131:0.0-1694.0 (median depth 10.0)
+[19:18:06 - Sampler] Took 0.00s to make features.
+[19:18:06 - PWorker] Running inference for 0.0M draft bases.
+[19:18:27 - PWorker] Batches in cache: 1.
+[19:18:27 - PWorker] 51.0% Done (0.0/0.0 Mbases) in 20.5s
+[19:18:27 - PWorker] Processed 1 batches
+[19:18:27 - PWorker] All done, 0 remainder regions.
+[19:18:27 - Predict] Finished processing all regions.
+[19:18:27 - MdlStrTF] Successfully removed temporary files from /tmp/tmp9heoplpc.
+[19:18:28 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:18:28 - Stitcher] Stitching group_3131:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3131/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.44] collected minimizers
+[M::mm_idx_gen::0.003*1.72] sorted minimizers
+[M::main::0.003*1.71] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.69] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.67] distinct minimizers: 314 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.398; total length: 1695
+[M::worker_pipeline::0.005*1.31] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3131.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3131/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:18:32 - MdlStrTF] Successfully removed temporary files from /tmp/tmpsr7zvr04.
+[19:18:33 - MdlStrTF] Successfully removed temporary files from /tmp/tmpnlxvn3b_.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3132.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3132.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.23] collected minimizers
+[M::mm_idx_gen::0.004*1.05] sorted minimizers
+[M::main::0.006*0.89] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.89] distinct minimizers: 316 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.364; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3132.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3132.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.81] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.53] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.52] distinct minimizers: 316 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.364; total length: 1695
+[M::worker_pipeline::0.010*1.11] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3132.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3132.fastq
+[M::main] Real time: 0.011 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:18:37 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:18:37 - Predict] Processing region(s): group_3132:0-1695
+[19:18:37 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:18:37 - BAMFile] Creating pool of 16 BAM file sets.
+[19:18:37 - Predict] Processing 1 short region(s).
+[19:18:38 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f21024b95a0>
+[19:18:38 - MdlStrTF] loading weights from /tmp/tmpbkw01es7/model/variables/variables (using expect partial)
+[19:18:38 - Sampler] Initializing sampler for consensus of region group_3132:0-1695.
+[19:18:38 - Feature] Processed group_3132:0.0-1694.0 (median depth 10.0)
+[19:18:38 - Sampler] Took 0.00s to make features.
+[19:18:38 - PWorker] Running inference for 0.0M draft bases.
+[19:18:58 - PWorker] Batches in cache: 1.
+[19:18:58 - PWorker] 49.3% Done (0.0/0.0 Mbases) in 20.5s
+[19:18:58 - PWorker] Processed 1 batches
+[19:18:58 - PWorker] All done, 0 remainder regions.
+[19:18:58 - Predict] Finished processing all regions.
+[19:18:58 - MdlStrTF] Successfully removed temporary files from /tmp/tmpbkw01es7.
+[19:19:00 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:19:00 - Stitcher] Stitching group_3132:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3132/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.64] collected minimizers
+[M::mm_idx_gen::0.003*1.75] sorted minimizers
+[M::main::0.003*1.74] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.72] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.70] distinct minimizers: 316 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.364; total length: 1695
+[M::worker_pipeline::0.004*1.35] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3132.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3132/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:19:04 - MdlStrTF] Successfully removed temporary files from /tmp/tmplr1398tu.
+[19:19:04 - MdlStrTF] Successfully removed temporary files from /tmp/tmprojbc5nn.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3133.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3133.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.16] collected minimizers
+[M::mm_idx_gen::0.004*1.01] sorted minimizers
+[M::main::0.007*0.86] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.007*0.86] distinct minimizers: 307 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.521; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3133.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3133.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.89] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.56] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.55] distinct minimizers: 307 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.521; total length: 1695
+[M::worker_pipeline::0.010*1.12] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3133.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3133.fastq
+[M::main] Real time: 0.011 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:19:09 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:19:09 - Predict] Processing region(s): group_3133:0-1695
+[19:19:09 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:19:09 - BAMFile] Creating pool of 16 BAM file sets.
+[19:19:09 - Predict] Processing 1 short region(s).
+[19:19:10 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7fb880b4de10>
+[19:19:10 - MdlStrTF] loading weights from /tmp/tmpcra_3z2s/model/variables/variables (using expect partial)
+[19:19:10 - Sampler] Initializing sampler for consensus of region group_3133:0-1695.
+[19:19:10 - Feature] Processed group_3133:0.0-1694.0 (median depth 10.0)
+[19:19:10 - Sampler] Took 0.00s to make features.
+[19:19:10 - PWorker] Running inference for 0.0M draft bases.
+[19:19:31 - PWorker] Batches in cache: 1.
+[19:19:31 - PWorker] 50.0% Done (0.0/0.0 Mbases) in 20.5s
+[19:19:31 - PWorker] Processed 1 batches
+[19:19:31 - PWorker] All done, 0 remainder regions.
+[19:19:31 - Predict] Finished processing all regions.
+[19:19:31 - MdlStrTF] Successfully removed temporary files from /tmp/tmpcra_3z2s.
+[19:19:32 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:19:32 - Stitcher] Stitching group_3133:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3133/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.70] collected minimizers
+[M::mm_idx_gen::0.003*1.80] sorted minimizers
+[M::main::0.003*1.79] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.77] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.75] distinct minimizers: 307 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.521; total length: 1695
+[M::worker_pipeline::0.004*1.43] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3133.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3133/consensus.fasta
+[M::main] Real time: 0.005 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:19:36 - MdlStrTF] Successfully removed temporary files from /tmp/tmpl3kwr5qw.
+[19:19:37 - MdlStrTF] Successfully removed temporary files from /tmp/tmpxp7i62g_.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3134.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3134.fasta.map-ont.mmi
+[M::mm_idx_gen::0.011*0.34] collected minimizers
+[M::mm_idx_gen::0.012*0.36] sorted minimizers
+[M::main::0.017*0.34] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.017*0.34] distinct minimizers: 315 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.381; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3134.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3134.fasta
+[M::main] Real time: 0.021 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.16] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.005*1.04] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.005*1.04] distinct minimizers: 315 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.381; total length: 1695
+[M::worker_pipeline::0.012*0.95] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3134.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3134.fastq
+[M::main] Real time: 0.013 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:19:41 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:19:41 - Predict] Processing region(s): group_3134:0-1695
+[19:19:41 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:19:41 - BAMFile] Creating pool of 16 BAM file sets.
+[19:19:41 - Predict] Processing 1 short region(s).
+[19:19:42 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f0954aa1a80>
+[19:19:42 - MdlStrTF] loading weights from /tmp/tmps787foog/model/variables/variables (using expect partial)
+[19:19:42 - Sampler] Initializing sampler for consensus of region group_3134:0-1695.
+[19:19:42 - Feature] Processed group_3134:0.0-1694.0 (median depth 10.0)
+[19:19:42 - Sampler] Took 0.00s to make features.
+[19:19:42 - PWorker] Running inference for 0.0M draft bases.
+[19:20:02 - PWorker] Batches in cache: 1.
+[19:20:02 - PWorker] 50.3% Done (0.0/0.0 Mbases) in 20.5s
+[19:20:02 - PWorker] Processed 1 batches
+[19:20:02 - PWorker] All done, 0 remainder regions.
+[19:20:02 - Predict] Finished processing all regions.
+[19:20:02 - MdlStrTF] Successfully removed temporary files from /tmp/tmps787foog.
+[19:20:04 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:20:04 - Stitcher] Stitching group_3134:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3134/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.66] collected minimizers
+[M::mm_idx_gen::0.003*1.74] sorted minimizers
+[M::main::0.003*1.73] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.71] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.69] distinct minimizers: 315 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.381; total length: 1695
+[M::worker_pipeline::0.004*1.39] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3134.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3134/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:20:07 - MdlStrTF] Successfully removed temporary files from /tmp/tmphwraczfv.
+[19:20:08 - MdlStrTF] Successfully removed temporary files from /tmp/tmpurldx_zc.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3135.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3135.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.33] collected minimizers
+[M::mm_idx_gen::0.004*1.13] sorted minimizers
+[M::main::0.006*0.95] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.95] distinct minimizers: 320 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.297; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3135.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3135.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.93] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.57] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.55] distinct minimizers: 320 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.297; total length: 1695
+[M::worker_pipeline::0.011*1.12] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3135.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3135.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.013 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:20:13 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:20:13 - Predict] Processing region(s): group_3135:0-1695
+[19:20:13 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:20:13 - BAMFile] Creating pool of 16 BAM file sets.
+[19:20:13 - Predict] Processing 1 short region(s).
+[19:20:14 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7fb9053b1ae0>
+[19:20:14 - MdlStrTF] loading weights from /tmp/tmpon_h99ng/model/variables/variables (using expect partial)
+[19:20:14 - Sampler] Initializing sampler for consensus of region group_3135:0-1695.
+[19:20:14 - Feature] Processed group_3135:0.0-1694.0 (median depth 10.0)
+[19:20:14 - Sampler] Took 0.00s to make features.
+[19:20:14 - PWorker] Running inference for 0.0M draft bases.
+[19:20:35 - PWorker] Batches in cache: 1.
+[19:20:35 - PWorker] 47.8% Done (0.0/0.0 Mbases) in 20.5s
+[19:20:35 - PWorker] Processed 1 batches
+[19:20:35 - PWorker] All done, 0 remainder regions.
+[19:20:35 - Predict] Finished processing all regions.
+[19:20:35 - MdlStrTF] Successfully removed temporary files from /tmp/tmpon_h99ng.
+[19:20:36 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:20:36 - Stitcher] Stitching group_3135:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3135/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.57] collected minimizers
+[M::mm_idx_gen::0.003*1.75] sorted minimizers
+[M::main::0.003*1.74] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.71] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.69] distinct minimizers: 320 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.297; total length: 1695
+[M::worker_pipeline::0.005*1.19] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3135.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3135/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:20:40 - MdlStrTF] Successfully removed temporary files from /tmp/tmpjegmwqq4.
+[19:20:40 - MdlStrTF] Successfully removed temporary files from /tmp/tmp6_n1emda.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3136.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3136.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.24] collected minimizers
+[M::mm_idx_gen::0.004*1.07] sorted minimizers
+[M::main::0.007*0.83] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.007*0.84] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3136.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3136.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.81] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.54] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.53] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::worker_pipeline::0.010*1.12] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3136.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3136.fastq
+[M::main] Real time: 0.011 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:20:45 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:20:45 - Predict] Processing region(s): group_3136:0-1695
+[19:20:45 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:20:45 - BAMFile] Creating pool of 16 BAM file sets.
+[19:20:45 - Predict] Processing 1 short region(s).
+[19:20:46 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f5d94f3d4b0>
+[19:20:46 - MdlStrTF] loading weights from /tmp/tmpr9itnkia/model/variables/variables (using expect partial)
+[19:20:46 - Sampler] Initializing sampler for consensus of region group_3136:0-1695.
+[19:20:46 - Feature] Processed group_3136:0.0-1694.0 (median depth 10.0)
+[19:20:46 - Sampler] Took 0.00s to make features.
+[19:20:46 - PWorker] Running inference for 0.0M draft bases.
+[19:21:06 - PWorker] Batches in cache: 1.
+[19:21:06 - PWorker] 50.6% Done (0.0/0.0 Mbases) in 20.5s
+[19:21:06 - PWorker] Processed 1 batches
+[19:21:06 - PWorker] All done, 0 remainder regions.
+[19:21:06 - Predict] Finished processing all regions.
+[19:21:06 - MdlStrTF] Successfully removed temporary files from /tmp/tmpr9itnkia.
+[19:21:08 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:21:08 - Stitcher] Stitching group_3136:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3136/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.64] collected minimizers
+[M::mm_idx_gen::0.003*1.78] sorted minimizers
+[M::main::0.003*1.77] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.75] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.74] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::worker_pipeline::0.004*1.37] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3136.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3136/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:21:11 - MdlStrTF] Successfully removed temporary files from /tmp/tmp99uzkaol.
+[19:21:12 - MdlStrTF] Successfully removed temporary files from /tmp/tmpt0gupjic.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3137.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3137.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.30] collected minimizers
+[M::mm_idx_gen::0.004*1.11] sorted minimizers
+[M::main::0.006*0.91] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.91] distinct minimizers: 309 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.485; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3137.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3137.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.33] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.004*1.20] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.004*1.19] distinct minimizers: 309 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.485; total length: 1695
+[M::worker_pipeline::0.011*1.03] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3137.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3137.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.013 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:21:16 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:21:16 - Predict] Processing region(s): group_3137:0-1695
+[19:21:16 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:21:16 - BAMFile] Creating pool of 16 BAM file sets.
+[19:21:16 - Predict] Processing 1 short region(s).
+[19:21:17 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f3b02081f30>
+[19:21:17 - MdlStrTF] loading weights from /tmp/tmpuj9jug_f/model/variables/variables (using expect partial)
+[19:21:17 - Sampler] Initializing sampler for consensus of region group_3137:0-1695.
+[19:21:17 - Feature] Processed group_3137:0.0-1694.0 (median depth 10.0)
+[19:21:17 - Sampler] Took 0.00s to make features.
+[19:21:17 - PWorker] Running inference for 0.0M draft bases.
+[19:21:38 - PWorker] Batches in cache: 1.
+[19:21:38 - PWorker] 48.4% Done (0.0/0.0 Mbases) in 20.5s
+[19:21:38 - PWorker] Processed 1 batches
+[19:21:38 - PWorker] All done, 0 remainder regions.
+[19:21:38 - Predict] Finished processing all regions.
+[19:21:38 - MdlStrTF] Successfully removed temporary files from /tmp/tmpuj9jug_f.
+[19:21:39 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:21:39 - Stitcher] Stitching group_3137:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3137/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.53] collected minimizers
+[M::mm_idx_gen::0.003*1.81] sorted minimizers
+[M::main::0.003*1.80] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.78] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.76] distinct minimizers: 309 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.485; total length: 1695
+[M::worker_pipeline::0.004*1.44] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3137.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3137/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:21:43 - MdlStrTF] Successfully removed temporary files from /tmp/tmp4o6wd7sw.
+[19:21:44 - MdlStrTF] Successfully removed temporary files from /tmp/tmpjk1zuvt2.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3138.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3138.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.30] collected minimizers
+[M::mm_idx_gen::0.004*1.11] sorted minimizers
+[M::main::0.006*0.93] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.93] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3138.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3138.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.27] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.005*1.13] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.005*1.13] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::worker_pipeline::0.012*0.99] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3138.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3138.fastq
+[M::main] Real time: 0.013 sec; CPU: 0.013 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:21:48 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:21:48 - Predict] Processing region(s): group_3138:0-1695
+[19:21:48 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:21:48 - BAMFile] Creating pool of 16 BAM file sets.
+[19:21:48 - Predict] Processing 1 short region(s).
+[19:21:49 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f0afda59ab0>
+[19:21:49 - MdlStrTF] loading weights from /tmp/tmpydc86mt3/model/variables/variables (using expect partial)
+[19:21:49 - Sampler] Initializing sampler for consensus of region group_3138:0-1695.
+[19:21:49 - Feature] Processed group_3138:0.0-1694.0 (median depth 10.0)
+[19:21:49 - Sampler] Took 0.00s to make features.
+[19:21:49 - PWorker] Running inference for 0.0M draft bases.
+[19:22:10 - PWorker] Batches in cache: 1.
+[19:22:10 - PWorker] 48.9% Done (0.0/0.0 Mbases) in 20.5s
+[19:22:10 - PWorker] Processed 1 batches
+[19:22:10 - PWorker] All done, 0 remainder regions.
+[19:22:10 - Predict] Finished processing all regions.
+[19:22:10 - MdlStrTF] Successfully removed temporary files from /tmp/tmpydc86mt3.
+[19:22:11 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:22:11 - Stitcher] Stitching group_3138:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3138/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.64] collected minimizers
+[M::mm_idx_gen::0.003*1.79] sorted minimizers
+[M::main::0.003*1.77] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.76] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.74] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::worker_pipeline::0.005*1.30] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3138.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3138/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:22:15 - MdlStrTF] Successfully removed temporary files from /tmp/tmp_fkc69jt.
+[19:22:16 - MdlStrTF] Successfully removed temporary files from /tmp/tmp48bu1mm1.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3139.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3139.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.29] collected minimizers
+[M::mm_idx_gen::0.004*1.11] sorted minimizers
+[M::main::0.006*0.94] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.94] distinct minimizers: 309 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.485; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3139.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3139.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.76] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.004*1.20] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.004*1.20] distinct minimizers: 309 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.485; total length: 1695
+[M::worker_pipeline::0.011*1.02] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3139.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3139.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:22:20 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:22:20 - Predict] Processing region(s): group_3139:0-1695
+[19:22:20 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:22:20 - BAMFile] Creating pool of 16 BAM file sets.
+[19:22:20 - Predict] Processing 1 short region(s).
+[19:22:21 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f86334e5a80>
+[19:22:21 - MdlStrTF] loading weights from /tmp/tmpuy2l4usx/model/variables/variables (using expect partial)
+[19:22:21 - Sampler] Initializing sampler for consensus of region group_3139:0-1695.
+[19:22:21 - Feature] Processed group_3139:0.0-1694.0 (median depth 10.0)
+[19:22:21 - Sampler] Took 0.00s to make features.
+[19:22:21 - PWorker] Running inference for 0.0M draft bases.
+[19:22:41 - PWorker] Batches in cache: 1.
+[19:22:41 - PWorker] 48.7% Done (0.0/0.0 Mbases) in 20.5s
+[19:22:41 - PWorker] Processed 1 batches
+[19:22:41 - PWorker] All done, 0 remainder regions.
+[19:22:41 - Predict] Finished processing all regions.
+[19:22:41 - MdlStrTF] Successfully removed temporary files from /tmp/tmpuy2l4usx.
+[19:22:43 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:22:43 - Stitcher] Stitching group_3139:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3139/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.72] collected minimizers
+[M::mm_idx_gen::0.003*1.90] sorted minimizers
+[M::main::0.003*1.89] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.86] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.84] distinct minimizers: 309 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.485; total length: 1695
+[M::worker_pipeline::0.004*1.43] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3139.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3139/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:22:46 - MdlStrTF] Successfully removed temporary files from /tmp/tmpdus_3oza.
+[19:22:47 - MdlStrTF] Successfully removed temporary files from /tmp/tmpfj_a2yil.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3140.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3140.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.31] collected minimizers
+[M::mm_idx_gen::0.004*1.09] sorted minimizers
+[M::main::0.006*0.92] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.92] distinct minimizers: 323 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.248; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3140.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3140.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.82] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.44] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.004*1.44] distinct minimizers: 323 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.248; total length: 1695
+[M::worker_pipeline::0.011*1.09] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3140.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3140.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:22:51 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:22:51 - Predict] Processing region(s): group_3140:0-1695
+[19:22:51 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:22:51 - BAMFile] Creating pool of 16 BAM file sets.
+[19:22:51 - Predict] Processing 1 short region(s).
+[19:22:52 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f4fe39c5ed0>
+[19:22:52 - MdlStrTF] loading weights from /tmp/tmpy4xw96h0/model/variables/variables (using expect partial)
+[19:22:52 - Sampler] Initializing sampler for consensus of region group_3140:0-1695.
+[19:22:52 - Feature] Processed group_3140:0.0-1694.0 (median depth 10.0)
+[19:22:52 - Sampler] Took 0.00s to make features.
+[19:22:52 - PWorker] Running inference for 0.0M draft bases.
+[19:23:13 - PWorker] Batches in cache: 1.
+[19:23:13 - PWorker] 50.1% Done (0.0/0.0 Mbases) in 20.5s
+[19:23:13 - PWorker] Processed 1 batches
+[19:23:13 - PWorker] All done, 0 remainder regions.
+[19:23:13 - Predict] Finished processing all regions.
+[19:23:13 - MdlStrTF] Successfully removed temporary files from /tmp/tmpy4xw96h0.
+[19:23:14 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:23:14 - Stitcher] Stitching group_3140:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3140/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.69] collected minimizers
+[M::mm_idx_gen::0.003*1.82] sorted minimizers
+[M::main::0.003*1.81] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.79] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.77] distinct minimizers: 323 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.248; total length: 1695
+[M::worker_pipeline::0.004*1.39] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3140.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3140/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:23:18 - MdlStrTF] Successfully removed temporary files from /tmp/tmp3zmz3dfj.
+[19:23:19 - MdlStrTF] Successfully removed temporary files from /tmp/tmpe7n9vout.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3141.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3141.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.38] collected minimizers
+[M::mm_idx_gen::0.004*1.08] sorted minimizers
+[M::main::0.007*0.87] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.007*0.88] distinct minimizers: 321 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.280; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3141.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3141.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.89] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.56] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.54] distinct minimizers: 321 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.280; total length: 1695
+[M::worker_pipeline::0.011*1.11] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3141.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3141.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.013 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:23:23 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:23:23 - Predict] Processing region(s): group_3141:0-1695
+[19:23:23 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:23:23 - BAMFile] Creating pool of 16 BAM file sets.
+[19:23:23 - Predict] Processing 1 short region(s).
+[19:23:24 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7fc2a4839f30>
+[19:23:24 - MdlStrTF] loading weights from /tmp/tmp8nxcusiv/model/variables/variables (using expect partial)
+[19:23:24 - Sampler] Initializing sampler for consensus of region group_3141:0-1695.
+[19:23:24 - Feature] Processed group_3141:0.0-1694.0 (median depth 10.0)
+[19:23:24 - Sampler] Took 0.00s to make features.
+[19:23:24 - PWorker] Running inference for 0.0M draft bases.
+[19:23:44 - PWorker] Batches in cache: 1.
+[19:23:44 - PWorker] 49.1% Done (0.0/0.0 Mbases) in 20.5s
+[19:23:44 - PWorker] Processed 1 batches
+[19:23:44 - PWorker] All done, 0 remainder regions.
+[19:23:44 - Predict] Finished processing all regions.
+[19:23:44 - MdlStrTF] Successfully removed temporary files from /tmp/tmp8nxcusiv.
+[19:23:46 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:23:46 - Stitcher] Stitching group_3141:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3141/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.04] collected minimizers
+[M::mm_idx_gen::0.003*1.58] sorted minimizers
+[M::main::0.003*1.57] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.56] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.55] distinct minimizers: 321 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.280; total length: 1695
+[M::worker_pipeline::0.005*1.22] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3141.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3141/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:23:49 - MdlStrTF] Successfully removed temporary files from /tmp/tmp0agdd1ib.
+[19:23:50 - MdlStrTF] Successfully removed temporary files from /tmp/tmpx5f2p2t_.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3142.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3142.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.40] collected minimizers
+[M::mm_idx_gen::0.004*1.05] sorted minimizers
+[M::main::0.007*0.91] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.007*0.91] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3142.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3142.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.34] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.004*1.18] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.004*1.18] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::worker_pipeline::0.011*1.03] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3142.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3142.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:23:54 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:23:54 - Predict] Processing region(s): group_3142:0-1695
+[19:23:54 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:23:55 - BAMFile] Creating pool of 16 BAM file sets.
+[19:23:55 - Predict] Processing 1 short region(s).
+[19:23:55 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f8288c09fc0>
+[19:23:55 - MdlStrTF] loading weights from /tmp/tmpyknssatr/model/variables/variables (using expect partial)
+[19:23:56 - Sampler] Initializing sampler for consensus of region group_3142:0-1695.
+[19:23:56 - Feature] Processed group_3142:0.0-1694.0 (median depth 10.0)
+[19:23:56 - Sampler] Took 0.00s to make features.
+[19:23:56 - PWorker] Running inference for 0.0M draft bases.
+[19:24:16 - PWorker] Batches in cache: 1.
+[19:24:16 - PWorker] 49.0% Done (0.0/0.0 Mbases) in 20.5s
+[19:24:16 - PWorker] Processed 1 batches
+[19:24:16 - PWorker] All done, 0 remainder regions.
+[19:24:16 - Predict] Finished processing all regions.
+[19:24:16 - MdlStrTF] Successfully removed temporary files from /tmp/tmpyknssatr.
+[19:24:17 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:24:17 - Stitcher] Stitching group_3142:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3142/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.35] collected minimizers
+[M::mm_idx_gen::0.003*1.68] sorted minimizers
+[M::main::0.003*1.67] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.66] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.64] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::worker_pipeline::0.005*1.19] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3142.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3142/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:24:21 - MdlStrTF] Successfully removed temporary files from /tmp/tmp7iyptexy.
+[19:24:22 - MdlStrTF] Successfully removed temporary files from /tmp/tmp77vuum8y.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3143.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3143.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.34] collected minimizers
+[M::mm_idx_gen::0.004*1.14] sorted minimizers
+[M::main::0.006*0.95] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.95] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3143.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3143.fasta
+[M::main] Real time: 0.008 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.19] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.005*1.07] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.005*1.07] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::worker_pipeline::0.012*0.98] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3143.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3143.fastq
+[M::main] Real time: 0.013 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:24:26 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:24:26 - Predict] Processing region(s): group_3143:0-1695
+[19:24:26 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:24:26 - BAMFile] Creating pool of 16 BAM file sets.
+[19:24:26 - Predict] Processing 1 short region(s).
+[19:24:27 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f92c3839ae0>
+[19:24:27 - MdlStrTF] loading weights from /tmp/tmpps1uow7p/model/variables/variables (using expect partial)
+[19:24:27 - Sampler] Initializing sampler for consensus of region group_3143:0-1695.
+[19:24:27 - Feature] Processed group_3143:0.0-1694.0 (median depth 10.0)
+[19:24:27 - Sampler] Took 0.00s to make features.
+[19:24:27 - PWorker] Running inference for 0.0M draft bases.
+[19:24:48 - PWorker] Batches in cache: 1.
+[19:24:48 - PWorker] 49.4% Done (0.0/0.0 Mbases) in 20.5s
+[19:24:48 - PWorker] Processed 1 batches
+[19:24:48 - PWorker] All done, 0 remainder regions.
+[19:24:48 - Predict] Finished processing all regions.
+[19:24:48 - MdlStrTF] Successfully removed temporary files from /tmp/tmpps1uow7p.
+[19:24:49 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:24:49 - Stitcher] Stitching group_3143:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3143/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.51] collected minimizers
+[M::mm_idx_gen::0.003*1.73] sorted minimizers
+[M::main::0.003*1.72] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.70] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.69] distinct minimizers: 319 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.313; total length: 1695
+[M::worker_pipeline::0.005*1.31] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3143.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3143/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:24:53 - MdlStrTF] Successfully removed temporary files from /tmp/tmpzg63f42_.
+[19:24:54 - MdlStrTF] Successfully removed temporary files from /tmp/tmpemi78h3e.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3144.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3144.fasta.map-ont.mmi
+[M::mm_idx_gen::0.004*0.97] collected minimizers
+[M::mm_idx_gen::0.005*0.84] sorted minimizers
+[M::main::0.008*0.77] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.008*0.77] distinct minimizers: 326 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.199; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3144.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3144.fasta
+[M::main] Real time: 0.010 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.27] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.005*1.09] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.005*1.09] distinct minimizers: 326 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.199; total length: 1695
+[M::worker_pipeline::0.012*0.99] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3144.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3144.fastq
+[M::main] Real time: 0.013 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:24:58 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:24:58 - Predict] Processing region(s): group_3144:0-1695
+[19:24:58 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:24:58 - BAMFile] Creating pool of 16 BAM file sets.
+[19:24:58 - Predict] Processing 1 short region(s).
+[19:24:59 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f6652c358d0>
+[19:24:59 - MdlStrTF] loading weights from /tmp/tmpxaaoaxjx/model/variables/variables (using expect partial)
+[19:24:59 - Sampler] Initializing sampler for consensus of region group_3144:0-1695.
+[19:24:59 - Feature] Processed group_3144:0.0-1694.0 (median depth 10.0)
+[19:24:59 - Sampler] Took 0.00s to make features.
+[19:24:59 - PWorker] Running inference for 0.0M draft bases.
+[19:25:19 - PWorker] Batches in cache: 1.
+[19:25:19 - PWorker] 47.6% Done (0.0/0.0 Mbases) in 20.5s
+[19:25:19 - PWorker] Processed 1 batches
+[19:25:19 - PWorker] All done, 0 remainder regions.
+[19:25:19 - Predict] Finished processing all regions.
+[19:25:19 - MdlStrTF] Successfully removed temporary files from /tmp/tmpxaaoaxjx.
+[19:25:21 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:25:21 - Stitcher] Stitching group_3144:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3144/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.50] collected minimizers
+[M::mm_idx_gen::0.003*1.70] sorted minimizers
+[M::main::0.003*1.69] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.68] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.66] distinct minimizers: 326 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.199; total length: 1695
+[M::worker_pipeline::0.004*1.35] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3144.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3144/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:25:24 - MdlStrTF] Successfully removed temporary files from /tmp/tmp6wmvlrws.
+[19:25:25 - MdlStrTF] Successfully removed temporary files from /tmp/tmpb7yh25zh.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3145.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3145.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.33] collected minimizers
+[M::mm_idx_gen::0.004*1.11] sorted minimizers
+[M::main::0.006*0.92] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.92] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3145.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3145.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.24] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.005*1.10] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.005*1.10] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::worker_pipeline::0.012*0.99] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3145.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3145.fastq
+[M::main] Real time: 0.012 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:25:29 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:25:29 - Predict] Processing region(s): group_3145:0-1695
+[19:25:29 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:25:29 - BAMFile] Creating pool of 16 BAM file sets.
+[19:25:29 - Predict] Processing 1 short region(s).
+[19:25:30 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7fb696901fc0>
+[19:25:30 - MdlStrTF] loading weights from /tmp/tmp6jl_qoev/model/variables/variables (using expect partial)
+[19:25:30 - Sampler] Initializing sampler for consensus of region group_3145:0-1695.
+[19:25:30 - Feature] Processed group_3145:0.0-1694.0 (median depth 10.0)
+[19:25:30 - Sampler] Took 0.00s to make features.
+[19:25:30 - PWorker] Running inference for 0.0M draft bases.
+[19:25:51 - PWorker] Batches in cache: 1.
+[19:25:51 - PWorker] 49.0% Done (0.0/0.0 Mbases) in 20.5s
+[19:25:51 - PWorker] Processed 1 batches
+[19:25:51 - PWorker] All done, 0 remainder regions.
+[19:25:51 - Predict] Finished processing all regions.
+[19:25:51 - MdlStrTF] Successfully removed temporary files from /tmp/tmp6jl_qoev.
+[19:25:52 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:25:52 - Stitcher] Stitching group_3145:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3145/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.53] collected minimizers
+[M::mm_idx_gen::0.003*1.74] sorted minimizers
+[M::main::0.003*1.73] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.71] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.69] distinct minimizers: 318 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.330; total length: 1695
+[M::worker_pipeline::0.004*1.34] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3145.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3145/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:25:56 - MdlStrTF] Successfully removed temporary files from /tmp/tmp65vyeii_.
+[19:25:57 - MdlStrTF] Successfully removed temporary files from /tmp/tmptt_u7oz5.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3146.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3146.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.30] collected minimizers
+[M::mm_idx_gen::0.004*1.11] sorted minimizers
+[M::main::0.006*0.93] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.93] distinct minimizers: 316 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.364; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3146.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3146.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.22] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.005*1.08] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.005*1.08] distinct minimizers: 316 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.364; total length: 1695
+[M::worker_pipeline::0.012*0.99] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3146.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3146.fastq
+[M::main] Real time: 0.013 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:26:01 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:26:01 - Predict] Processing region(s): group_3146:0-1695
+[19:26:01 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:26:01 - BAMFile] Creating pool of 16 BAM file sets.
+[19:26:01 - Predict] Processing 1 short region(s).
+[19:26:02 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f9487531b10>
+[19:26:02 - MdlStrTF] loading weights from /tmp/tmpf5yjdh8b/model/variables/variables (using expect partial)
+[19:26:02 - Sampler] Initializing sampler for consensus of region group_3146:0-1695.
+[19:26:02 - Feature] Processed group_3146:0.0-1694.0 (median depth 10.0)
+[19:26:02 - Sampler] Took 0.00s to make features.
+[19:26:02 - PWorker] Running inference for 0.0M draft bases.
+[19:26:22 - PWorker] Batches in cache: 1.
+[19:26:22 - PWorker] 48.6% Done (0.0/0.0 Mbases) in 20.5s
+[19:26:22 - PWorker] Processed 1 batches
+[19:26:22 - PWorker] All done, 0 remainder regions.
+[19:26:22 - Predict] Finished processing all regions.
+[19:26:22 - MdlStrTF] Successfully removed temporary files from /tmp/tmpf5yjdh8b.
+[19:26:24 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:26:24 - Stitcher] Stitching group_3146:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3146/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.67] collected minimizers
+[M::mm_idx_gen::0.003*1.79] sorted minimizers
+[M::main::0.003*1.78] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.76] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.74] distinct minimizers: 316 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.364; total length: 1695
+[M::worker_pipeline::0.005*1.34] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3146.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3146/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:26:27 - MdlStrTF] Successfully removed temporary files from /tmp/tmpyvapauud.
+[19:26:28 - MdlStrTF] Successfully removed temporary files from /tmp/tmpm7gyyh3_.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3147.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3147.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.24] collected minimizers
+[M::mm_idx_gen::0.004*1.07] sorted minimizers
+[M::main::0.006*0.90] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.91] distinct minimizers: 314 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.398; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3147.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3147.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.007*0.77] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.008*0.72] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.008*0.72] distinct minimizers: 314 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.398; total length: 1695
+[M::worker_pipeline::0.015*0.82] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3147.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3147.fastq
+[M::main] Real time: 0.016 sec; CPU: 0.013 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:26:32 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:26:32 - Predict] Processing region(s): group_3147:0-1695
+[19:26:32 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:26:33 - BAMFile] Creating pool of 16 BAM file sets.
+[19:26:33 - Predict] Processing 1 short region(s).
+[19:26:34 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7ff10f4f5d50>
+[19:26:34 - MdlStrTF] loading weights from /tmp/tmpc8ga8x3u/model/variables/variables (using expect partial)
+[19:26:34 - Sampler] Initializing sampler for consensus of region group_3147:0-1695.
+[19:26:34 - Feature] Processed group_3147:0.0-1694.0 (median depth 10.0)
+[19:26:34 - Sampler] Took 0.00s to make features.
+[19:26:34 - PWorker] Running inference for 0.0M draft bases.
+[19:26:54 - PWorker] Batches in cache: 1.
+[19:26:54 - PWorker] 47.2% Done (0.0/0.0 Mbases) in 20.5s
+[19:26:54 - PWorker] Processed 1 batches
+[19:26:54 - PWorker] All done, 0 remainder regions.
+[19:26:54 - Predict] Finished processing all regions.
+[19:26:54 - MdlStrTF] Successfully removed temporary files from /tmp/tmpc8ga8x3u.
+[19:26:55 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:26:55 - Stitcher] Stitching group_3147:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3147/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.54] collected minimizers
+[M::mm_idx_gen::0.003*1.77] sorted minimizers
+[M::main::0.003*1.76] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.74] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.72] distinct minimizers: 314 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.398; total length: 1695
+[M::worker_pipeline::0.004*1.34] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3147.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3147/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:26:59 - MdlStrTF] Successfully removed temporary files from /tmp/tmpticl8d0s.
+[19:27:00 - MdlStrTF] Successfully removed temporary files from /tmp/tmpp07vv7mq.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3148.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3148.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.35] collected minimizers
+[M::mm_idx_gen::0.004*1.10] sorted minimizers
+[M::main::0.006*0.90] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.91] distinct minimizers: 328 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.168; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3148.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3148.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.004*1.27] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.005*1.09] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.005*1.09] distinct minimizers: 328 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.168; total length: 1695
+[M::worker_pipeline::0.012*0.99] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3148.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3148.fastq
+[M::main] Real time: 0.013 sec; CPU: 0.013 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:27:04 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:27:04 - Predict] Processing region(s): group_3148:0-1695
+[19:27:04 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:27:04 - BAMFile] Creating pool of 16 BAM file sets.
+[19:27:04 - Predict] Processing 1 short region(s).
+[19:27:05 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f3b3afe9bd0>
+[19:27:05 - MdlStrTF] loading weights from /tmp/tmpfoqi6c4f/model/variables/variables (using expect partial)
+[19:27:05 - Sampler] Initializing sampler for consensus of region group_3148:0-1695.
+[19:27:05 - Feature] Processed group_3148:0.0-1694.0 (median depth 10.0)
+[19:27:05 - Sampler] Took 0.00s to make features.
+[19:27:05 - PWorker] Running inference for 0.0M draft bases.
+[19:27:26 - PWorker] Batches in cache: 1.
+[19:27:26 - PWorker] 50.4% Done (0.0/0.0 Mbases) in 20.5s
+[19:27:26 - PWorker] Processed 1 batches
+[19:27:26 - PWorker] All done, 0 remainder regions.
+[19:27:26 - Predict] Finished processing all regions.
+[19:27:26 - MdlStrTF] Successfully removed temporary files from /tmp/tmpfoqi6c4f.
+[19:27:27 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:27:27 - Stitcher] Stitching group_3148:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3148/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.004*0.98] collected minimizers
+[M::mm_idx_gen::0.006*0.88] sorted minimizers
+[M::main::0.006*0.88] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.006*0.88] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.006*0.88] distinct minimizers: 328 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.168; total length: 1695
+[M::worker_pipeline::0.009*0.69] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3148.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3148/consensus.fasta
+[M::main] Real time: 0.019 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+TF_CPP_MIN_LOG_LEVEL is set to '3'
+Attempting to automatically select model version.
+WARNING: Failed to detect a model version, will use default: 'r1041_e82_400bps_sup_v4.3.0'
+Checking program versions
+This is medaka 1.11.3
+Program    Version    Required   Pass     
+bcftools   1.17       1.11       True     
+bgzip      1.17       1.11       True     
+minimap2   2.26       2.11       True     
+samtools   1.18       1.11       True     
+tabix      1.17       1.11       True     
+[19:27:31 - MdlStrTF] Successfully removed temporary files from /tmp/tmpfk4gn1s2.
+[19:27:32 - MdlStrTF] Successfully removed temporary files from /tmp/tmpn_ij5brn.
+Aligning basecalls to draft
+Creating fai index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3149.fasta.fai
+Creating mmi index file /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3149.fasta.map-ont.mmi
+[M::mm_idx_gen::0.003*1.18] collected minimizers
+[M::mm_idx_gen::0.004*1.04] sorted minimizers
+[M::main::0.007*0.87] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.007*0.87] distinct minimizers: 312 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.433; total length: 1695
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -I 16G -x map-ont -d /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3149.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3149.fasta
+[M::main] Real time: 0.009 sec; CPU: 0.007 sec; Peak RSS: 0.002 GB
+[M::main::0.003*1.99] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.67] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.65] distinct minimizers: 312 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.433; total length: 1695
+[M::worker_pipeline::0.010*1.16] mapped 10 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x map-ont --secondary=no -L --MD -A 2 -B 4 -O 4,24 -E 2,1 -t 1 -a /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3149.fasta.map-ont.mmi /n/scratch/groups/hms/sysbio/paulsson/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/readgroups/subsample=10/chunk_125/group_3149.fastq
+[M::main] Real time: 0.011 sec; CPU: 0.012 sec; Peak RSS: 0.003 GB
+Running medaka consensus
+[19:27:36 - Predict] Setting tensorflow inter/intra-op threads to 1/1.
+[19:27:36 - Predict] Processing region(s): group_3149:0-1695
+[19:27:36 - Predict] Using model: /home/de64/micromamba/envs/nanopore/lib/python3.10/site-packages/medaka/data/r1041_e82_400bps_sup_v4.3.0_model.tar.gz.
+[19:27:36 - BAMFile] Creating pool of 16 BAM file sets.
+[19:27:36 - Predict] Processing 1 short region(s).
+[19:27:37 - MdlStrTF] Model <keras.engine.sequential.Sequential object at 0x7f2247339c00>
+[19:27:37 - MdlStrTF] loading weights from /tmp/tmpo9mhsske/model/variables/variables (using expect partial)
+[19:27:37 - Sampler] Initializing sampler for consensus of region group_3149:0-1695.
+[19:27:37 - Feature] Processed group_3149:0.0-1694.0 (median depth 10.0)
+[19:27:37 - Sampler] Took 0.00s to make features.
+[19:27:37 - PWorker] Running inference for 0.0M draft bases.
+[19:27:58 - PWorker] Batches in cache: 1.
+[19:27:58 - PWorker] 48.3% Done (0.0/0.0 Mbases) in 20.5s
+[19:27:58 - PWorker] Processed 1 batches
+[19:27:58 - PWorker] All done, 0 remainder regions.
+[19:27:58 - Predict] Finished processing all regions.
+[19:27:58 - MdlStrTF] Successfully removed temporary files from /tmp/tmpo9mhsske.
+[19:27:59 - DataIndx] Loaded 1/1 (100.00%) sample files.
+[19:27:59 - Stitcher] Stitching group_3149:0-1695
+Polished assembly written to /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3149/consensus.fasta, have a nice day.
+[M::mm_idx_gen::0.002*2.69] collected minimizers
+[M::mm_idx_gen::0.003*1.79] sorted minimizers
+[M::main::0.003*1.78] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.003*1.76] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.003*1.74] distinct minimizers: 312 (100.00% are singletons); average occurrences: 1.000; average spacing: 5.433; total length: 1695
+[M::worker_pipeline::0.005*1.21] mapped 1 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -ax map-ont /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/grouprefs/subsample=10/chunk_125/group_3149.fasta /home/de64/scratch/de64/sync_folder/2020-10-18_snakemake_2020-10-14_lDE11_R10-3_merged/consensus/subsample=10/chunk_125/group_3149/consensus.fasta
+[M::main] Real time: 0.006 sec; CPU: 0.006 sec; Peak RSS: 0.002 GB
+[Sat Jan  6 19:27:59 2024]
+Finished job 0.
+1 of 1 steps (100%) done
